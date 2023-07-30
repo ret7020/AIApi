@@ -24,7 +24,11 @@ def ask(history: List[dict], msg) -> Tuple[List[dict], str]:
 
 openai.api_key = os.getenv("OPENAI_TOKEN")
 history = []
-
+initial_prompt = '''Вместо ответа на вопрос о погоде, я заменяю его на !module_weather'''
+history.append({
+    "role": "assistant",
+    "content": initial_prompt
+})
 while True:
     msg = input(">")
     history, ans = ask(history, msg)
